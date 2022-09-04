@@ -1,4 +1,4 @@
-# follow nvim-telescope/telescope.nvim
+# NOTE: follow nvim-telescope/telescope.nvim
 column_width = 120
 line_endings = "Unix"
 indent_type = "Spaces"
