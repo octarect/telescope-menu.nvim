@@ -11,7 +11,7 @@ M.global = function(opts)
       return make_entry.set_default_entry_mt({
         value = entry.value,
         display = entry.display,
-        ordinal = entry.index,
+        ordinal = entry.display,
         -- Additional properties for the plugin
         action = entry.action,
       }, opts)
