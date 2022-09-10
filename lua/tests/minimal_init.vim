@@ -7,7 +7,7 @@ telescope.setup({
     menu = {
       global = {
         items = {
-          { action = "command", display = "Check health", value="checkhealth"},
+          { display = "Check health", value="checkhealth"},
           { action = "command", display = "Find files", value="Telescope find_files"},
         }
       }

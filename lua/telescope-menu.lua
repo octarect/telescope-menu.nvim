@@ -1,11 +1,15 @@
-local make_results = function(items)
-  local results = {}
-  for i, item in ipairs(items) do
-    local r = item
-    r.index = i
-    table.insert(results, r)
+local normalize_menu = function(ext_menu_config)
+  local menu_config = {}
+  local default_action = ext_menu_config.default_action or "command"
+
+  menu_config.results = {}
+  for i, item in ipairs(ext_menu_config.items) do
+    item.index = i
+    item.action = item.action or default_action
+    table.insert(menu_config.results, item)
   end
-  return results
+
+  return menu_config
 end
 
 local M = {}
@@ -13,8 +17,7 @@ local M = {}
 M.config = {}
 
 M.setup = function(ext_config, config)
-  M.config.global = {}
-  M.config.global.results = make_results(ext_config.global.items)
+  M.config.global = normalize_menu(ext_config.global)
 end
 
 return M
