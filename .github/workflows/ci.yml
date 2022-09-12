@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  run_test:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fd-find mlocate
+
+          mkdir nvim
+          curl -sL https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz | tar -zxf - --strip-components=1 -C nvim
+
+
+      - name: Download plugins
+        run: |
+          NVIM_PLUGIN_PATH=~/.local/share/nvim/site/pack/vendor/start
+          mkdir -p $NVIM_PLUGIN_PATH
+          ln -s $(pwd) $NVIM_PLUGIN_PATH
+
+          cd $NVIM_PLUGIN_PATH
+          git clone --depth 1 https://github.com/nvim-lua/plenary.nvim
+          git clone --depth 1 https://github.com/nvim-telescope/telescope.nvim
+
+      - name: Run tests
+        run: |
+          export PATH="$(pwd)/nvim/bin:$PATH"
+          make test
