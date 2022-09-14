@@ -54,3 +54,10 @@ require("telescope").load_extension "menu"
 ### Run
 
 Run `Telescope menu` or `lua require("telescope").extensions.menu.menu()`
+
+### CHANGELOG
+
+**v0.1.0**
+
+- [x] Basic features (Open a custom menu by `Telescope menu`)
+- [x] CI for automated test
