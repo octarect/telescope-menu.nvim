@@ -1,5 +1,7 @@
 # telescope-menu.nvim
 
+[![CI](https://github.com/octarect/telescope-menu.nvim/actions/workflows/ci.yml/badge.svg)](https://github.com/octarect/telescope-menu.nvim/actions/workflows/ci.yml)
+
 `telescope-menu.nvim` is an extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) which provides custom menus.
 
 ## Getting started
