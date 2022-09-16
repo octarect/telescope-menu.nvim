@@ -5,7 +5,7 @@ local telescope = require "telescope"
 telescope.setup({
   extensions = {
     menu = {
-      global = {
+      default = {
         items = {
           { display = "Check health", value="checkhealth"},
           { action = "command", display = "Find files", value="Telescope find_files"},

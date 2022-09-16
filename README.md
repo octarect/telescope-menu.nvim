@@ -37,7 +37,7 @@ repo = 'octarect/telescope-menu.nvim'
 require("telescope").setup {
   extensions = {
     menu = {
-      global = {
+      default = {
         items = {
           { display = "Show LSP Info", value = "LspInfo" },
           { display = "Files", value = "Telescope find_files" },

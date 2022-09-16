@@ -24,7 +24,7 @@ local call_picker = function(opts)
   pickers
     .new(opts, {
       prompt_title = "Menu",
-      finder = finders.global(opts),
+      finder = finders.default(opts),
       sorter = conf.generic_sorter(opts),
       attach_mappings = function(_, _)
         actions.select_default:replace(function(prompt_bufnr)
