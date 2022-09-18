@@ -8,6 +8,12 @@ on:
 jobs:
   run_test:
     runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        nvim_version: [nightly, stable]
+    env:
+      NVIM_RELEASE_URL: https://github.com/neovim/neovim/releases/download/${{ matrix.nvim_version }}/nvim-linux64.tar.gz
     steps:
       - uses: actions/checkout@v2
 
@@ -17,8 +23,8 @@ jobs:
           sudo apt-get install -y fd-find mlocate
 
           mkdir nvim
-          curl -sL https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz | tar -zxf - --strip-components=1 -C nvim
-
+          echo "Downloading $NVIM_RELEASE_URL..."
+          curl -sL $NVIM_RELEASE_URL | tar -zxf - --strip-components=1 -C nvim
 
       - name: Download plugins
         run: |
