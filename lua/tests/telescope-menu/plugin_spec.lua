@@ -7,7 +7,7 @@ describe("plugin", function()
         items = {
           { action = "command", display = "text00", value = "value00" },
           { action = "command", display = "text01", value = "value01" },
-        }
+        },
       },
     }
 
@@ -16,8 +16,8 @@ describe("plugin", function()
         results = {
           { index = 1, action = "command", display = "text00", value = "value00" },
           { index = 2, action = "command", display = "text01", value = "value01" },
-        }
-      }
+        },
+      },
     }
 
     assert.has_no.error(function()
