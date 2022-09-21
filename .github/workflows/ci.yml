@@ -53,3 +53,14 @@ jobs:
 
       - name: Lint
         run: make lint
+
+  check_style:
+    name: check style
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: JohnnyMorganz/stylua-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # CLI arguments
+          args: --color always --check lua/
