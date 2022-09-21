@@ -38,3 +38,18 @@ jobs:
         run: |
           export PATH="$(pwd)/nvim/bin:$PATH"
           make test
+
+  lint:
+    name: lint
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Prepare
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y luarocks
+          sudo luarocks install luacheck
+
+      - name: Lint
+        run: make lint
