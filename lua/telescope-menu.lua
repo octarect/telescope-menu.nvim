@@ -19,7 +19,7 @@ local M = {}
 
 M.config = {}
 
-M.setup = function(ext_config, config)
+M.setup = function(ext_config, _)
   M.config.default = normalize_menu(ext_config.default)
 end
 
