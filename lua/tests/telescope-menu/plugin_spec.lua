@@ -16,7 +16,7 @@ describe("plugin", function()
 
     local expected = {
       default = {
-        results = {
+        items = {
           { index = 1, action = "command", display = "text00", value = "command00" },
           { index = 2, action = "command", display = "text01", value = "command01" },
           { index = 3, action = "command", display = "text02", value = "command02" },
