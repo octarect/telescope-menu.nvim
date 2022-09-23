@@ -39,8 +39,10 @@ require("telescope").setup {
     menu = {
       default = {
         items = {
-          { display = "Show LSP Info", value = "LspInfo" },
-          { display = "Files", value = "Telescope find_files" },
+          { "Checkhealth", "checkhealth" },
+          { "Show LSP Info", "LspInfo" },
+          { "Files", "Telescope find_files" },
+          -- The above examples are syntax-sugars of the following;
           { display = "Change colorscheme", value = "Telescope colorscheme" },
         },
       },

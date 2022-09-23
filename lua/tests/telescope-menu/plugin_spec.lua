@@ -5,8 +5,11 @@ describe("plugin", function()
     local input = {
       default = {
         items = {
-          { action = "command", display = "text00", value = "value00" },
-          { action = "command", display = "text01", value = "value01" },
+          { display = "text00", value = "command00" },
+          { action = "command", display = "text01", value = "command01" },
+          { "text02", "command02" },
+          { "text03", "command03", "command" },
+          { "text04", "command04", action = "command" },
         },
       },
     }
@@ -14,8 +17,11 @@ describe("plugin", function()
     local expected = {
       default = {
         results = {
-          { index = 1, action = "command", display = "text00", value = "value00" },
-          { index = 2, action = "command", display = "text01", value = "value01" },
+          { index = 1, action = "command", display = "text00", value = "command00" },
+          { index = 2, action = "command", display = "text01", value = "command01" },
+          { index = 3, action = "command", display = "text02", value = "command02" },
+          { index = 4, action = "command", display = "text03", value = "command03" },
+          { index = 5, action = "command", display = "text04", value = "command04" },
         },
       },
     }
