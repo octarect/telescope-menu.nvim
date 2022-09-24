@@ -1,8 +1,8 @@
 local core = require "telescope._extensions.menu.core"
-local plugin = require "telescope-menu"
+local config = require "telescope._extensions.menu.config"
 
 return require("telescope").register_extension {
-  setup = plugin.setup,
+  setup = config.setup,
   exports = {
     menu = core.menu,
     default = core.menu,

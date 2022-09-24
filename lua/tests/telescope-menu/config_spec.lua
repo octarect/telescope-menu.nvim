@@ -1,6 +1,6 @@
-local plugin = require "telescope-menu"
+local config = require "telescope._extensions.menu.config"
 
-describe("plugin", function()
+describe("config", function()
   it("can parse valid config correctly", function()
     local input = {
       default = {
@@ -27,9 +27,9 @@ describe("plugin", function()
     }
 
     assert.has_no.error(function()
-      plugin.setup(input, {})
+      config.setup(input, {})
     end)
 
-    assert.same(plugin.config, expected)
+    assert.same(config.data, expected)
   end)
 end)
