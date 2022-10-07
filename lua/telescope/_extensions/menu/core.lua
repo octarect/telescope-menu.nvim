@@ -47,7 +47,7 @@ local M = {}
 
 M.get_menu_launcher = function(menu_name)
   return function()
-    return call_picker({ menu_name = menu_name })
+    return call_picker { menu_name = menu_name }
   end
 end
 

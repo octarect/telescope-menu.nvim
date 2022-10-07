@@ -1,20 +1,20 @@
 -- setup
 (function()
-    local telescope = require "telescope"
-    telescope.setup({
-      extensions = {
-        menu = {
-          default = {
-            items = {
-              { display = "Check health", value="checkhealth"},
-              { action = "command", display = "Find files", value="Telescope find_files"},
-            }
+  local telescope = require "telescope"
+  telescope.setup {
+    extensions = {
+      menu = {
+        default = {
+          items = {
+            { display = "Check health", value = "checkhealth" },
+            { action = "command", display = "Find files", value = "Telescope find_files" },
           },
-          menu2 = {}
-        }
-      }
-    })
-    telescope.load_extension("menu")
+        },
+        menu2 = {},
+      },
+    },
+  }
+  telescope.load_extension "menu"
 end)()
 
 describe("integration tests:", function()

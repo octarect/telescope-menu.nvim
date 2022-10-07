@@ -1,5 +1,5 @@
 local finders = require "telescope.finders"
-local config = require "telescope._extensions.menu.config".data
+local config = require("telescope._extensions.menu.config").data
 local make_entry = require "telescope.make_entry"
 
 local M = {}

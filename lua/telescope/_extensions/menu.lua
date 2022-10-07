@@ -10,8 +10,8 @@ extension = require("telescope").register_extension {
     end
   end,
   exports = {
-    menu = core.get_menu_launcher("default"),
-    default = core.get_menu_launcher("default"),
+    menu = core.get_menu_launcher "default",
+    default = core.get_menu_launcher "default",
   },
 }
 
