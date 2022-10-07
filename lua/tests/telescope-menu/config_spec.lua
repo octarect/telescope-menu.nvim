@@ -1,7 +1,8 @@
 local config = require "telescope._extensions.menu.config"
+local helpers = require "tests.helpers"
 
 describe("config", function()
-  it("can parse valid config correctly", function()
+  it("items", function()
     local input = {
       default = {
         items = {
@@ -27,9 +28,23 @@ describe("config", function()
     }
 
     assert.has_no.error(function()
-      config.setup(input, {})
+      config.setup(input)
     end)
 
     assert.same(config.data, expected)
+  end)
+
+  it("multiple menu", function()
+    local input = {
+      default = {},
+      another = {},
+    }
+
+    assert.has_no.error(function()
+      config.setup(input)
+    end)
+
+    -- check config keys
+    assert.is_same(helpers.get_keys(input), helpers.get_keys(config.data))
   end)
 end)

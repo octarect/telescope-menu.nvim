@@ -23,7 +23,7 @@ local call_picker = function(opts)
   -- values in 2nd arg will be overwritten by opts
   pickers
     .new(opts, {
-      prompt_title = "Menu",
+      prompt_title = opts.menu_name,
       finder = finders.default(opts),
       sorter = conf.generic_sorter(opts),
       attach_mappings = function(_, _)
@@ -45,9 +45,10 @@ end
 
 local M = {}
 
-M.menu = function(opts)
-  opts = opts or {}
-  return call_picker(vim.tbl_extend("force", default_opts, opts))
+M.get_menu_launcher = function(menu_name)
+  return function()
+    return call_picker({ menu_name = menu_name })
+  end
 end
 
 return M

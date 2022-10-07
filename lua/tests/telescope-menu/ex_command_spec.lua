@@ -21,4 +21,8 @@ describe("integration tests:", function()
   it("Telescope menu", function()
     vim.cmd [[ Telescope menu ]]
   end)
+
+  it("check mutiple menu support", function()
+    vim.cmd [[ Telescope menu menu2 ]]
+  end)
 end)

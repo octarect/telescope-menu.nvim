@@ -6,7 +6,7 @@ local M = {}
 
 M.default = function(opts)
   return finders.new_table {
-    results = config.default.items,
+    results = config[opts.menu_name].items,
     entry_maker = function(entry)
       return make_entry.set_default_entry_mt({
         value = entry.value,

@@ -42,8 +42,20 @@ require("telescope").setup {
           { "Checkhealth", "checkhealth" },
           { "Show LSP Info", "LspInfo" },
           { "Files", "Telescope find_files" },
+
           -- The above examples are syntax-sugars of the following;
           { display = "Change colorscheme", value = "Telescope colorscheme" },
+
+          -- Jump to another menu
+          { "Editor", "Telescope menu editor" },
+        },
+      },
+      -- Multiple menus are supported. `editor` is an example, and you can name it as you like.
+      editor = {
+        items = {
+          { "Split window vertically", "vsplit" },
+          { "Split window horizontally", "split" },
+          { "Write", "w" },
         },
       },
     },
