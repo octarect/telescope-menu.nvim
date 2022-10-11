@@ -4,10 +4,6 @@ local pickers = require "telescope.pickers"
 local conf = require("telescope.config").values
 local finders = require "telescope._extensions.menu.finders"
 
-local default_opts = {
-  prompt_title = "Menu1",
-}
-
 local menu_actions = {}
 
 menu_actions.command = function(entry)
