@@ -5,6 +5,6 @@ return require("telescope").register_extension {
   setup = plugin.setup,
   exports = {
     menu = core.menu,
-    global = core.menu,
+    default = core.menu,
   },
 }

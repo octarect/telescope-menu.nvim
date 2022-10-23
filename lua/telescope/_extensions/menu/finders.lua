@@ -4,9 +4,9 @@ local make_entry = require "telescope.make_entry"
 
 local M = {}
 
-M.global = function(opts)
-  return finders.new_table({
-    results = plugin.config.global.results,
+M.default = function(opts)
+  return finders.new_table {
+    results = plugin.config.default.results,
     entry_maker = function(entry)
       return make_entry.set_default_entry_mt({
         value = entry.value,
@@ -16,7 +16,7 @@ M.global = function(opts)
         action = entry.action,
       }, opts)
     end,
-  })
+  }
 end
 
 return M

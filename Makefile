@@ -2,7 +2,11 @@ all: lint
 
 .PHONY: fmt
 fmt:
-	@stylua lua
+	@stylua lua/
+
+.PHONY: lint
+lint:
+	@luacheck lua/
 
 .PHONY: test
 test:

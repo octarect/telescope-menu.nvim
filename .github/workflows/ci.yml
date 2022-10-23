@@ -2,12 +2,20 @@ name: CI
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
   pull_request:
 
 jobs:
-  run_test:
+  test:
+    name: test
     runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        nvim_version: [nightly, stable]
+    env:
+      NVIM_RELEASE_URL: https://github.com/neovim/neovim/releases/download/${{ matrix.nvim_version }}/nvim-linux64.tar.gz
     steps:
       - uses: actions/checkout@v2
 
@@ -17,8 +25,8 @@ jobs:
           sudo apt-get install -y fd-find mlocate
 
           mkdir nvim
-          curl -sL https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz | tar -zxf - --strip-components=1 -C nvim
-
+          echo "Downloading $NVIM_RELEASE_URL..."
+          curl -sL $NVIM_RELEASE_URL | tar -zxf - --strip-components=1 -C nvim
 
       - name: Download plugins
         run: |
@@ -34,3 +42,29 @@ jobs:
         run: |
           export PATH="$(pwd)/nvim/bin:$PATH"
           make test
+
+  lint:
+    name: lint
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Prepare
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y luarocks
+          sudo luarocks install luacheck
+
+      - name: Lint
+        run: make lint
+
+  check_style:
+    name: check style
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: JohnnyMorganz/stylua-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # CLI arguments
+          args: --color always --check lua/
