@@ -2,7 +2,9 @@ local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
 local pickers = require "telescope.pickers"
 local conf = require("telescope.config").values
-local finders = require "telescope._extensions.menu.finders"
+local finders = require "telescope.finders"
+local make_entry = require "telescope.make_entry"
+local config = require "telescope._extensions.menu.config"
 
 local menu_actions = {}
 
@@ -15,12 +17,31 @@ local call_picker = function(opts)
 
   local ctx = {}
   ctx.initial_mode = vim.fn.mode()
+  ctx.filetype = vim.bo.filetype
+
+  local menu
+  if opts.menu_name == "filetype" and type(config.data["filetype"]) == "table" then
+    menu = config.data["filetype"][ctx.filetype] or {}
+  else
+    menu = config.data[opts.menu_name]
+  end
 
   -- values in 2nd arg will be overwritten by opts
   pickers
-    .new(opts, {
+    .new({}, {
       prompt_title = opts.menu_name,
-      finder = finders.default(opts),
+      finder = finders.new_table {
+        results = menu.items or {},
+        entry_maker = function(entry)
+          return make_entry.set_default_entry_mt({
+            value = entry.value,
+            display = entry.display,
+            ordinal = entry.display,
+            -- Additional properties for the plugin
+            action = entry.action,
+          }, {})
+        end,
+      },
       sorter = conf.generic_sorter(opts),
       attach_mappings = function(_, _)
         actions.select_default:replace(function(prompt_bufnr)

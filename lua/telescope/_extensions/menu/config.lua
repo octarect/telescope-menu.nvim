@@ -1,4 +1,4 @@
-local normalize_menu = function(ext_menu_config)
+local function normalize_menu(ext_menu_config)
   local menu_config = {}
   local default_action = ext_menu_config.default_action or "command"
 
@@ -15,14 +15,24 @@ local normalize_menu = function(ext_menu_config)
   return menu_config
 end
 
+local function parse_config(ext_config)
+  local result = {}
+  for name, menu in pairs(ext_config) do
+    if name == "filetype" then
+      result[name] = parse_config(menu)
+    else
+      result[name] = normalize_menu(menu)
+    end
+  end
+  return result
+end
+
 local M = {}
 
 M.data = {}
 
 M.setup = function(ext_config)
-  for name, menu in pairs(ext_config) do
-    M.data[name] = normalize_menu(menu)
-  end
+  M.data = parse_config(ext_config)
 end
 
 return M

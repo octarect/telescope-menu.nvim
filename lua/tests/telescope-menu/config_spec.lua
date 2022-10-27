@@ -47,4 +47,30 @@ describe("config", function()
     -- check config keys
     assert.is_same(helpers.get_keys(input), helpers.get_keys(config.data))
   end)
+
+  it("filetype", function()
+    local input = {
+      filetype = {
+        lua = {},
+        vim = {},
+      },
+    }
+
+    assert.has_no.error(function()
+      config.setup(input)
+    end)
+
+    -- check config keys
+    -- expect the following;
+    -- {
+    --   filetype = {
+    --     lua = {
+    --       items = {},
+    --     },
+    --     vim = { ... },
+    --   }
+    -- }
+    assert.is_true(config.data.filetype ~= nil)
+    assert.is_same(helpers.get_keys(input.filetype), helpers.get_keys(config.data.filetype))
+  end)
 end)

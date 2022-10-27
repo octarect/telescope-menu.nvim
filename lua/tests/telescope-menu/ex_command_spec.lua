@@ -11,6 +11,13 @@
           },
         },
         menu2 = {},
+        filetype = {
+          lua = {
+            items = {
+              { display = "Format", value = "!stylua %" },
+            },
+          },
+        },
       },
     },
   }
@@ -24,5 +31,9 @@ describe("integration tests:", function()
 
   it("check mutiple menu support", function()
     vim.cmd [[ Telescope menu menu2 ]]
+  end)
+
+  it("Open menu depending on filetype", function()
+    vim.cmd [[ Telescope menu filetype ]]
   end)
 end)
