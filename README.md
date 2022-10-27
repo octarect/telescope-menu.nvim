@@ -142,9 +142,26 @@ Example:
 
 Any pull requests are welcome. We consider you have granted non-exclusive right to your contributed code under [MIT License](https://github.com/octarect/telescope-menu.nvim/blob/master/LICENSE). Use http://github.com/octarect/telescope-menu.nvim/issues for discussion.
 
-### CHANGELOG
+---
+
+## CHANGELOG
 
 **v0.1.0**
 
 - [x] Basic features (Open a custom menu by `Telescope menu`)
 - [x] CI for automated test
+
+**v0.2.0**
+
+New features
+- [x] Filetype-specific menu (`Telescope menu filetype`)
+- [x] Multiple menus
+- [x] Supported list format for item (syntax-sugar)
+
+Breaking changes
+- [x] changed name of default menu: `global` -> `default`
+
+Other
+- [x] improved CI
+  - matrix test
+  - added lint and stylecheck
