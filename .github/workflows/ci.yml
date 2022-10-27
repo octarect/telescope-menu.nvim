@@ -18,21 +18,29 @@ jobs:
       NVIM_RELEASE_URL: https://github.com/neovim/neovim/releases/download/${{ matrix.nvim_version }}/nvim-linux64.tar.gz
     steps:
       - uses: actions/checkout@v2
+      - run: date +%F > todays-date
+      - name: Restore from todays cache
+        uses: actions/cache@v3
+        with:
+          path: _neovim
+          key: ${{ matrix.nvim_version }}-${{ hashFiles('todays-date') }}
 
       - name: Setup
         run: |
           sudo apt-get update
           sudo apt-get install -y fd-find mlocate
 
-          mkdir nvim
-          echo "Downloading $NVIM_RELEASE_URL..."
-          curl -sL $NVIM_RELEASE_URL | tar -zxf - --strip-components=1 -C nvim
+          test -d _neovim || {
+            mkdir -p _neovim
+            echo "Downloading $NVIM_RELEASE_URL..."
+            curl -sL $NVIM_RELEASE_URL | tar -zxf - --strip-components=1 -C "${PWD}/_neovim"
+          }
 
       - name: Download plugins
         run: |
           NVIM_PLUGIN_PATH=~/.local/share/nvim/site/pack/vendor/start
           mkdir -p $NVIM_PLUGIN_PATH
-          ln -s $(pwd) $NVIM_PLUGIN_PATH
+          ln -s ${PWD} $NVIM_PLUGIN_PATH
 
           cd $NVIM_PLUGIN_PATH
           git clone --depth 1 https://github.com/nvim-lua/plenary.nvim
@@ -40,7 +48,7 @@ jobs:
 
       - name: Run tests
         run: |
-          export PATH="$(pwd)/nvim/bin:$PATH"
+          export PATH="${PWD}/_neovim/bin:$PATH"
           make test
 
   lint:
