@@ -28,7 +28,7 @@ local call_picker = function(opts)
 
   -- values in 2nd arg will be overwritten by opts
   pickers
-    .new({}, {
+    .new(opts, {
       prompt_title = opts.menu_name,
       finder = finders.new_table {
         results = menu.items or {},
@@ -39,7 +39,7 @@ local call_picker = function(opts)
             ordinal = entry.display,
             -- Additional properties for the plugin
             action = entry.action,
-          }, {})
+          }, opts)
         end,
       },
       sorter = conf.generic_sorter(opts),
@@ -63,8 +63,8 @@ end
 local M = {}
 
 M.get_menu_launcher = function(menu_name)
-  return function()
-    return call_picker { menu_name = menu_name }
+  return function(opts)
+    return call_picker(vim.tbl_deep_extend("force", { menu_name = menu_name }, opts))
   end
 end
 
