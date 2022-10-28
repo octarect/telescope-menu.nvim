@@ -1,6 +1,7 @@
 # telescope-menu.nvim
 
 [![CI](https://github.com/octarect/telescope-menu.nvim/actions/workflows/ci.yml/badge.svg)](https://github.com/octarect/telescope-menu.nvim/actions/workflows/ci.yml)
+[![Tag](https://img.shields.io/github/v/tag/octarect/telescope-menu.nvim)](https://github.com/octarect/telescope-menu.nvim/tags)
 
 `telescope-menu.nvim` is an extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) which provides custom menus.
 
@@ -19,7 +20,7 @@ call dein#add('nvim-telescope/telescope.nvim')
 call dein#add('octarect/telescope-menu.nvim')
 ```
 
-if using TOML,
+If using TOML,
 
 ```toml
 [[plugins]]
@@ -159,9 +160,9 @@ New features
 - [x] Supported list format for item (syntax-sugar)
 
 Breaking changes
-- [x] changed name of default menu: `global` -> `default`
+- [x] Changed name of default menu: `global` -> `default`
 
 Other
-- [x] improved CI
-  - matrix test
-  - added lint and stylecheck
+- [x] Improved CI
+  - Matrix test
+  - Added lint and stylecheck
