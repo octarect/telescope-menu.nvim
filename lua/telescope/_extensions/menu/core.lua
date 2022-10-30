@@ -6,12 +6,6 @@ local finders = require "telescope.finders"
 local make_entry = require "telescope.make_entry"
 local config = require "telescope._extensions.menu.config"
 
-local menu_actions = {}
-
-menu_actions.command = function(entry)
-  vim.api.nvim_exec(entry.value, true)
-end
-
 local call_picker = function(opts)
   opts = opts or {}
 
@@ -48,11 +42,7 @@ local call_picker = function(opts)
           actions.close(prompt_bufnr)
 
           local entry = action_state.get_selected_entry()
-          if menu_actions[entry.action] then
-            menu_actions[entry.action](entry, ctx)
-          else
-            error(string.format("Unknown action: %s", entry.action))
-          end
+          entry.action(entry, ctx)
         end)
         return true
       end,

@@ -1,15 +1,23 @@
+local actions = require "telescope._extensions.menu.actions"
+
+local function get_default_action(item)
+  if type(item.value) == "function" then
+    return actions.lua_function
+  end
+  return actions.vim_command
+end
+
 local function normalize_menu(ext_menu_config)
   local menu_config = {}
-  local default_action = ext_menu_config.default_action or "command"
 
   menu_config.items = {}
   for i, item in ipairs(ext_menu_config.items or {}) do
-    local items0 = {}
-    items0.index = i
-    items0.action = item.action or item[3] or default_action
-    items0.display = item.display or item[1]
-    items0.value = item.value or item[2]
-    table.insert(menu_config.items, items0)
+    local item0 = {}
+    item0.index = i
+    item0.display = item.display or item[1]
+    item0.value = item.value or item[2]
+    item0.action = item.action or item[3] or ext_menu_config.default_action or get_default_action(item0)
+    table.insert(menu_config.items, item0)
   end
 
   return menu_config
