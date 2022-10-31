@@ -40,6 +40,7 @@ require("telescope").setup {
     menu = {
       default = {
         items = {
+          -- You can add an item of menu in the form of { "<display>", "<command>" }
           { "Checkhealth", "checkhealth" },
           { "Show LSP Info", "LspInfo" },
           { "Files", "Telescope find_files" },
@@ -67,10 +68,10 @@ Run `Telescope menu` to open the menu `default`.
 
 ### Pickers
 
-| Vim Command                   | Lua                                                   | Description                 |
-|:------------------------------|:------------------------------------------------------|:----------------------------|
-| `:Telescope menu`             | `:lua require"telescope".extensions.menu.menu{}`      | Open default menu           |
-| `:Telescope menu filetype`         | `lua require"telescope".extensions.menu.filetype{}`     | Open filetype-specific menu |
+| Vim Command                   | Lua                                                     | Description                 |
+|:------------------------------|:--------------------------------------------------------|:----------------------------|
+| `:Telescope menu`             | `:lua require"telescope".extensions.menu.menu{}`        | Open default menu           |
+| `:Telescope menu filetype`    | `lua require"telescope".extensions.menu.filetype{}`     | Open filetype-specific menu |
 | `:Telescope menu <menu_name>` | `:lua require"telescope".extensions.menu.<menu_name>{}` | Open <menu_name>            |
 
 ## Configuration
@@ -133,6 +134,26 @@ Example:
         --     -- your favorite commands
         --   }
         -- }
+      }
+    },
+  },
+}
+```
+
+### Executing lua function
+
+You can specify lua function as command instead of string.
+
+```lua
+{
+  extensions = {
+    menu = {
+      default = {
+        items = {
+          { "Example", function()
+            print("This is example."\n")
+          end},
+        },
       }
     },
   },
