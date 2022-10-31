@@ -5,6 +5,8 @@
 
 `telescope-menu.nvim` is an extension for [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) which provides custom menus.
 
+![Demo](./doc/images/demo.gif)
+
 ## Getting Started
 
 ### Dependencies
