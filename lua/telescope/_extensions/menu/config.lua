@@ -16,7 +16,7 @@ local function normalize_menu(ext_menu_config)
     item0.index = i
     item0.display = item.display or item[1]
     item0.value = item.value or item[2]
-    item0.action = item.action or item[3] or ext_menu_config.default_action or get_default_action(item0)
+    item0.action = item.action or item[3] or ext_menu_config.action or get_default_action(item0)
     table.insert(menu_config.items, item0)
   end
 

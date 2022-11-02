@@ -162,6 +162,25 @@ You can specify lua function as command instead of string.
 }
 ```
 
+### Executing a mapping
+
+```lua
+local keymap = require("telescope-menu.actions").keymap
+
+require("telescope").setup {
+  extensions = {
+    menu = {
+      default = {
+        items = {
+          { "Jump to the previous hunk", "<Plug>(GitGutterPrevHunk)", keymap },
+          { "Jump to the next hunk", "<Plug>(GitGutterNextHunk)", keymap },
+        },
+      },
+    },
+  },
+}
+```
+
 ## Contributing
 
 Any pull requests are welcome. We consider you have granted non-exclusive right to your contributed code under [MIT License](https://github.com/octarect/telescope-menu.nvim/blob/master/LICENSE). Use http://github.com/octarect/telescope-menu.nvim/issues for discussion.
