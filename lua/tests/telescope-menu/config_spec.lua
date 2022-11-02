@@ -1,4 +1,4 @@
-local actions = require "telescope._extensions.menu.actions"
+local actions = require "telescope-menu.actions"
 local config = require "telescope._extensions.menu.config"
 local helpers = require "tests.helpers"
 

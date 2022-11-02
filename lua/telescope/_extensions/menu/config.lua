@@ -1,4 +1,4 @@
-local actions = require "telescope._extensions.menu.actions"
+local actions = require "telescope-menu.actions"
 
 local function get_default_action(item)
   if type(item.value) == "function" then
