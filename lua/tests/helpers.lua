@@ -5,6 +5,7 @@ M.get_keys = function(tbl)
   for k, _ in pairs(tbl) do
     table.insert(keys, k)
   end
+  table.sort(keys)
   return keys
 end
 
