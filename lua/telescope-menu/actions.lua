@@ -1,9 +1,11 @@
 local M = {}
 
 M.vim_command = function(entry, _)
-  local output = vim.api.nvim_exec(entry.value, true)
-  if output ~= nil then
-    print(output)
+  local result = vim.api.nvim_exec2(entry.value, {
+    output = true,
+  })
+  if result.output ~= nil then
+    print(result.output)
   end
 end
 
