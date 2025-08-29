@@ -9,21 +9,21 @@ on:
 jobs:
   test:
     name: test
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
         nvim_version: [nightly, stable]
     env:
-      NVIM_RELEASE_URL: https://github.com/neovim/neovim/releases/download/${{ matrix.nvim_version }}/nvim-linux64.tar.gz
+      NVIM_RELEASE_URL: https://github.com/neovim/neovim/releases/download/${{ matrix.nvim_version }}/nvim-linux-x86_64.tar.gz
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - run: date +%F > todays-date
       - name: Restore from todays cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: _neovim
-          key: ${{ matrix.nvim_version }}-${{ hashFiles('todays-date') }}
+          key: ${{ runner.os }}-${{ matrix.nvim_version }}-${{ hashFiles('todays-date') }}
 
       - name: Setup
         run: |
@@ -49,13 +49,14 @@ jobs:
       - name: Run tests
         run: |
           export PATH="${PWD}/_neovim/bin:$PATH"
+          nvim --version
           make test
 
   lint:
     name: lint
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Prepare
         run: |
@@ -68,11 +69,12 @@ jobs:
 
   check_style:
     name: check style
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
-      - uses: JohnnyMorganz/stylua-action@v1
+      - uses: actions/checkout@v4
+      - uses: JohnnyMorganz/stylua-action@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
           # CLI arguments
           args: --color always --check lua/
